@@ -1,6 +1,7 @@
 package co.com.bancolombia.usecase.franchise;
 
 import co.com.bancolombia.model.franquicia.Franquicia;
+import co.com.bancolombia.model.franquicia.gateways.FranquiciaRepository;
 import co.com.bancolombia.model.producto.Producto;
 import co.com.bancolombia.model.sucursal.Sucursal;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +10,10 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class FranchiseUseCase {
 
-    public Mono<String> crearFranquicia(Franquicia franquicia) {
-        return Mono.just("creando la pinshi franquicia: "+franquicia.toString());
+    private final FranquiciaRepository franquiciaRepository;
+
+    public Mono<Franquicia> crearFranquicia(Franquicia franquicia) {
+        return franquiciaRepository.save(franquicia);
     }
 
     public Mono<String> crearSucursal(Sucursal sucursal) {

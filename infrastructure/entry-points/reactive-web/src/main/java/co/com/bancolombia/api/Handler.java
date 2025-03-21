@@ -20,7 +20,7 @@ public class Handler {
         return serverRequest.bodyToMono(CrearFranquiciaRequest.class)
                 .map(mappings::toFranquicia)
                 .flatMap(franchiseUseCase::crearFranquicia)
-                .flatMap(response -> ServerResponse.ok().bodyValue(response));
+                .flatMap(response -> ServerResponse.ok().bodyValue(response.toString()));
     }
 
     public Mono<ServerResponse> crearSucursal(ServerRequest serverRequest) {
