@@ -1,0 +1,18 @@
+package co.com.bancolombia.model.sucursalproducto;
+import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
+public class SucursalProducto {
+
+    private Integer sucursalId;
+
+    private Integer productoId;
+
+    private Integer stock;
+}
