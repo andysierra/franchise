@@ -1,4 +1,4 @@
-package co.com.asierra.r2dbc;
+package co.com.asierra.r2dbc.repository.franquicia;
 
 import co.com.asierra.r2dbc.data.FranquiciaData;
 import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;

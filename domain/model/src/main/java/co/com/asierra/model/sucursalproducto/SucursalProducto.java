@@ -10,9 +10,11 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class SucursalProducto {
 
+    private Integer id;
+
     private Integer sucursalId;
 
     private Integer productoId;
 
-    private Integer stock;
+    private Long stock;
 }

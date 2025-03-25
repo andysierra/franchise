@@ -1,11 +1,13 @@
-package co.com.asierra.r2dbc;
+package co.com.asierra.r2dbc.repository.franquicia;
 
 import co.com.asierra.model.franquicia.Franquicia;
 import co.com.asierra.model.franquicia.gateways.FranquiciaRepository;
 import co.com.asierra.r2dbc.data.FranquiciaData;
+import co.com.asierra.r2dbc.exceptions.FranquiciaNoEncontradaException;
 import co.com.asierra.r2dbc.helper.ReactiveAdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
 @Repository
 public class FranquiciaReactiveRepositoryAdapter extends ReactiveAdapterOperations<
@@ -23,4 +25,9 @@ public class FranquiciaReactiveRepositoryAdapter extends ReactiveAdapterOperatio
         super(repository, mapper, d -> mapper.map(d, Franquicia.class/* change for domain model */));
     }
 
+    @Override
+    public Mono<Franquicia> findById(Integer id) {
+        return super.findById(id)
+                .switchIfEmpty(Mono.error(new FranquiciaNoEncontradaException(String.format("La franquicia [%d] no existe", id))));
+    }
 }

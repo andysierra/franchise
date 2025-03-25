@@ -1,4 +1,4 @@
-package co.com.asierra.api.dto;
+package co.com.asierra.api.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

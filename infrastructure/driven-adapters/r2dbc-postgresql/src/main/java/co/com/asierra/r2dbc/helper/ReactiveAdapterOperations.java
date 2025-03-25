@@ -64,4 +64,9 @@ public abstract class ReactiveAdapterOperations<E, D, I, R extends ReactiveCrudR
         return repository.findAll()
                 .map(this::toEntity);
     }
+
+    public Mono<E> findOne(E entity) {
+        return repository.findOne(Example.of(toData(entity)))
+                .map(this::toEntity);
+    }
 }

@@ -1,6 +1,5 @@
 package co.com.asierra.r2dbc.helper;
 
-import co.com.asierra.r2dbc.helper.ReactiveAdapterOperations;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

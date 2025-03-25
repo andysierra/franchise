@@ -1,4 +1,4 @@
-package co.com.asierra.api.dto;
+package co.com.asierra.api.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class CrearSucursalRequest {
+public class CrearFranquiciaRequest {
 
     private String nombre;
-
-    private Integer franquiciaId;
 
     private Integer status;
 }

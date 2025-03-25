@@ -1,6 +1,6 @@
 package co.com.asierra.r2dbc;
 
-import co.com.asierra.r2dbc.FranquiciaReactiveRepositoryAdapter;
+import co.com.asierra.r2dbc.repository.franquicia.FranquiciaReactiveRepositoryAdapter;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
