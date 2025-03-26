@@ -7,6 +7,7 @@ import co.com.asierra.r2dbc.exceptions.SucursalNoEncontradaException;
 import co.com.asierra.r2dbc.helper.ReactiveAdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
@@ -30,5 +31,10 @@ public class SucursalReactiveRepositoryAdapter extends ReactiveAdapterOperations
     public Mono<Sucursal> findById(Integer id) {
         return super.findById(id)
                 .switchIfEmpty(Mono.error(new SucursalNoEncontradaException(String.format("La sucursal [%d] no existe", id))));
+    }
+
+    @Override
+    public Flux<Sucursal> findByExample(Sucursal sucursal) {
+        return super.findByExample(sucursal);
     }
 }

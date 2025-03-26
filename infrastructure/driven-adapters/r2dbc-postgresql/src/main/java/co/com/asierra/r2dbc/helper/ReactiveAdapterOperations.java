@@ -1,5 +1,6 @@
 package co.com.asierra.r2dbc.helper;
 
+import co.com.asierra.r2dbc.exceptions.ElementoNoEncontradoException;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.data.domain.Example;
 import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;
@@ -69,4 +70,5 @@ public abstract class ReactiveAdapterOperations<E, D, I, R extends ReactiveCrudR
         return repository.findOne(Example.of(toData(entity)))
                 .map(this::toEntity);
     }
+
 }

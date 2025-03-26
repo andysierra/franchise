@@ -22,8 +22,5 @@ public class ProductoData {
     private String nombre;
 
     @Column
-    private Integer sucursalId;
-
-    @Column
     private Integer status;
 }

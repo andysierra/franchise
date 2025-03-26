@@ -3,6 +3,7 @@ package co.com.asierra.r2dbc.repository.sucursalProducto;
 import co.com.asierra.model.sucursalproducto.SucursalProducto;
 import co.com.asierra.model.sucursalproducto.gateways.SucursalProductoRepository;
 import co.com.asierra.r2dbc.data.SucursalProductoData;
+import co.com.asierra.r2dbc.exceptions.SucursalNoEncontradaException;
 import co.com.asierra.r2dbc.helper.ReactiveAdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.data.domain.Example;

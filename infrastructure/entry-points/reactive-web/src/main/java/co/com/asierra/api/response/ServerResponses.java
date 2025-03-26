@@ -26,13 +26,21 @@ public class ServerResponses {
         log.error(">>> Error", throwable);
         String errName = throwable.getClass().getSimpleName();
 
+        if(flow == null) {
+            if("NumberFormatException".equals(errName)) {
+                return buildBadRequestResponse(null, throwable.getMessage(), null);
+            }
+        }
+
         return flow.flatMap(body -> {
             if ("FranquiciaNoEncontradaException".equals(errName) && body instanceof CrearSucursalRequest sucursalRequest)
                 return buildBadRequestResponse(sucursalRequest, throwable.getMessage(), null);
-            if ("SucursalNoEncontradaException".equals(errName) && body instanceof CrearProductoRequest productoRequest)
+            else if ("SucursalNoEncontradaException".equals(errName) && body instanceof CrearProductoRequest productoRequest)
                 return buildBadRequestResponse(productoRequest, throwable.getMessage(), null);
-            if ("ProductoNoEncontradoException".equals(errName) && body instanceof CrearProductoRequest productoRequest)
+            else if ("ProductoNoEncontradoException".equals(errName) && body instanceof CrearProductoRequest productoRequest)
                 return buildBadRequestResponse(productoRequest, throwable.getMessage(), "El producto no fue encontrado");
+            else if ("ElementoNoEncontradoException".equals(errName))
+                return buildBadRequestResponse(null, throwable.getMessage(), ">>>>>>>>>> aaaaaaaaaaaaaa");
             else {
                 return buildBadRequestResponse(null, throwable.getMessage(), null);
             }
@@ -44,16 +52,22 @@ public class ServerResponses {
     private static <T> Mono<ServerResponse> buildBadRequestResponse(T request, String errorMessage, String auxMessage) {
 
         String message = "";
-        if(request instanceof CrearSucursalRequest sucursalRequest) {
+
+        if(auxMessage != null && !auxMessage.isEmpty()) {
+            message = auxMessage;
+        }
+        else if(request == null) {
+            if("NumberFormatException".equals(errorMessage)) {
+                message = "El id del producto no es un número válido";
+            }
+        }
+        else if(request instanceof CrearSucursalRequest sucursalRequest) {
             message = String.format("La franquicia con el id %s no existe! %s",
                     sucursalRequest.getFranquiciaId(), sucursalRequest);
         }
         else if(request instanceof CrearProductoRequest productoRequest) {
             message = String.format("La sucursal con el id %s no existe! %s",
                     productoRequest.getSucursalId(), productoRequest);
-        }
-        else if(auxMessage != null && !auxMessage.isEmpty()) {
-            message = auxMessage;
         }
         else {
             message = "Error desconocido";

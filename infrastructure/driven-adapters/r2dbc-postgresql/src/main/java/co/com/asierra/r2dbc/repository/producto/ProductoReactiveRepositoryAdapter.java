@@ -24,4 +24,9 @@ public class ProductoReactiveRepositoryAdapter extends ReactiveAdapterOperations
     public Mono<Producto> findById(Integer id) {
         return super.findById(id);
     }
+
+    @Override
+    public Mono<Void> deleteById(Integer id) {
+        return null;
+    }
 }
